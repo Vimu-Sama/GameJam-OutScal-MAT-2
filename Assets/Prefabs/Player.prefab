@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  dashForce: 1
 --- !u!50 &6479295575020687538
 Rigidbody2D:
   serializedVersion: 4

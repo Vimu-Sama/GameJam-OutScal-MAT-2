@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Follow_Player : MonoBehaviour
+public class Follow_Player : MonoBehaviour, DestroyObject
 {
     [SerializeField] float maximumDistance = 5f;
     [SerializeField] float moveSpeed = 1f ;

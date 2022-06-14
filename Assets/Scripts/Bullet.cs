@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour, DestroyObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroyObject ds = collision.GetComponent<DestroyObject>();
+        DestroyObject ds = collision.gameObject.GetComponent<DestroyObject>();
         if(ds!= null)
         {
             Destroy(collision.gameObject);
