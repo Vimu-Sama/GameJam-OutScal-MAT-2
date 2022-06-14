@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, DestroyObject
 {
     [SerializeField] float bulletLife = 5f;
     float time;
@@ -14,12 +14,16 @@ public class Bullet : MonoBehaviour
             
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Bound")
+        DestroyObject ds = collision.GetComponent<DestroyObject>();
+        if(ds!= null)
         {
+            Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
     }
+
+
 
 }
