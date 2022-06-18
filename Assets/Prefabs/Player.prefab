@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6479295575020687538}
   - component: {fileID: 6479295575020687545}
   - component: {fileID: 1510815680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 25
+  controls: 1
+  move: 1
 --- !u!50 &6479295575020687538
 Rigidbody2D:
   serializedVersion: 4
@@ -943,7 +945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6479295575464262186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

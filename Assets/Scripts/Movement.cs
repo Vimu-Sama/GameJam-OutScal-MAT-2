@@ -1,13 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     [Header("Physics Quantities")]
     [SerializeField] float moveSpeed;
+    [HideInInspector] public bool controls = true;
+    [HideInInspector] public bool move = true;
+    
     [Header("Connected GameObjects")]
 
     bool jump = true;
     Vector2 pos = new Vector2(0, 0);
+
+
+    private void Start()
+    {
+        controls = true;
+        move = true;
+    }
 
     private void FixedUpdate()
     {
@@ -17,22 +29,66 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (!move)
+            Debug.Log("it worked!");
+        if(move)
         {
-            pos = new Vector2(-1, 0);
+            if(controls)
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    pos = new Vector2(-1, 0);
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    pos = new Vector2(1, 0);
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    pos = new Vector2(0, 1);
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    pos = new Vector2(0, -1);
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.D))
+                {
+                    pos = new Vector2(-1, 0);
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    pos = new Vector2(1, 0);
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    pos = new Vector2(0, 1);
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    pos = new Vector2(0, -1);
+                }
+            }
         }
-        else if (Input.GetKey(KeyCode.D))
+        if(controls==false)
         {
-            pos = new Vector2(1, 0);
+            StartCoroutine(SetTrue("controls"));
         }
-        else if (Input.GetKey(KeyCode.W))
+        if(move==false)
         {
-            pos = new Vector2(0, 1);
+            StartCoroutine(SetTrue("move"));
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            pos = new Vector2(0, -1);
-        }
-
     }
+    IEnumerator SetTrue(string var)
+    {
+        yield return new WaitForSeconds(5);
+
+        if (var == "controls")
+            controls = true;
+        else if (var == "move")
+            move = true;
+    }
+
 }

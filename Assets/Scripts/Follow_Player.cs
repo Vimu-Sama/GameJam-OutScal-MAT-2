@@ -7,13 +7,23 @@ public class Follow_Player : MonoBehaviour, DestroyObject
     [SerializeField] float maximumDistance = 5f;
     [SerializeField] float moveSpeed = 1f ;
     [SerializeField] Transform player;
+
+    void Start()
+    {
+        player = FindObjectOfType<AimNdShoot>().gameObject.transform;
+    }
+
     void Update()
     {
-        float x = Mathf.Pow(this.transform.position.x - player.position.x,2);
-        float y = Mathf.Pow(player.position.y - this.transform.position.y, 2);
-        if (Mathf.Sqrt(Mathf.Abs(x + y))> maximumDistance)
+        if (player != null)
         {
-            this.transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed);
+            float x = Mathf.Pow(this.transform.position.x - player.position.x, 2);
+            float y = Mathf.Pow(player.position.y - this.transform.position.y, 2);
+            if (Mathf.Sqrt(Mathf.Abs(x + y)) > maximumDistance)
+            {
+                this.transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed);
+            }
         }
+        
     }
 }
